@@ -37,8 +37,7 @@ namespace ConsoleApp7
                         }
                         break;
                     case "3":
-                        
-                        Console.WriteLine("\n" + "Папка сохранена в настройках." + "\n");
+                        ConfigManager.Config();
                         break;
                     case "4":
                         flag = false;
