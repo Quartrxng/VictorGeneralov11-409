@@ -28,17 +28,27 @@ namespace ConsoleApp7
             var savedHistoryDirectory = ConfigManager.LoadConfig();
             if (string.IsNullOrWhiteSpace(savedHistoryDirectory) || !Directory.Exists(savedHistoryDirectory))
             {
-                Console.WriteLine("Укажите папку для сохранения файлов:");
-                savedHistoryDirectory = Console.ReadLine();
-
-                ConfigManager.SaveConfig(savedHistoryDirectory);
-                Console.WriteLine("Папка сохранена в настройках.");
+                while (true)
+                {
+                    Console.WriteLine("\n" + "Укажите папку для сохранения файлов:" + "\n");
+                    savedHistoryDirectory = Console.ReadLine();
+                    if (Directory.Exists(savedHistoryDirectory))
+                    {
+                        ConfigManager.SaveConfig(savedHistoryDirectory);
+                        Console.WriteLine("Папка сохранена в настройках" + "\n");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Такой папки не существует");
+                    }
+                }
             }
             else
             {
                 Console.WriteLine($"Будет использоваться сохранённая папка: {savedHistoryDirectory}");
             }
-            Menu.Separator();
+            Menu.Separate();
         }
     }
 }

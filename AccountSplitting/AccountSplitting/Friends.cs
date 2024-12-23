@@ -15,7 +15,7 @@ namespace ConsoleApp7
         public static string FriendsString;
         public static List<string> FriendsList = new List<string>();
 
-        public static void FriendCreator(string text)
+        public static void FriendCreate(string text)
         {
             FriendsList.AddRange(text.Split(',').Select(friend => friend.Trim()).Where(friend => !string.IsNullOrEmpty(friend)));
 
@@ -25,17 +25,17 @@ namespace ConsoleApp7
             if (!File.Exists(FriendFile))
                 File.Create(FriendFile).Close();
 
-            var friendArray = FileWorker.FileReader(FriendFile);
+            var friendArray = FileWork.FileRead(FriendFile);
 
             foreach (var friend in FriendsList)
             {
                 if (!friendArray.Contains(friend))
                 {
-                    FileWorker.FileWriter(FriendFile, friend);
+                    FileWork.FileWrite(FriendFile, friend);
                 }
             }
         }
-        public static void FriendsDebt(string text)
+        public static void FriendsDebtSpecify(string text)
         {
             string[] FriendArray = text.Split('=');
             FriendArray[0] = FriendArray[0].Trim();
@@ -55,35 +55,35 @@ namespace ConsoleApp7
                 }
             }
 
-            if (FileWorker.FileReader(FriendFile).Contains(FriendArray[0]) && !FriendsDictionary.ContainsKey(FriendArray[0]))
+            if (FileWork.FileRead(FriendFile).Contains(FriendArray[0]) && !FriendsDictionary.ContainsKey(FriendArray[0]))
             {
-                FriendEditor(FriendArray[0], debtDouble);
+                FriendEdit(FriendArray[0], debtDouble);
             }
-            else if(FileWorker.FileReader(FriendFile).Contains(FriendArray[0]) && FriendsDictionary.ContainsKey(FriendArray[0]))
+            else if(FileWork.FileRead(FriendFile).Contains(FriendArray[0]) && FriendsDictionary.ContainsKey(FriendArray[0]))
             {
                 FriendsList.Add(FriendArray[0]);
-                FriendEditor(FriendArray[0], debtDouble);
+                FriendEdit(FriendArray[0], debtDouble);
             }
 
-            else if (!FileWorker.FileReader(FriendFile).Contains(FriendArray[0]))
+            else if (!FileWork.FileRead(FriendFile).Contains(FriendArray[0]))
             {
                 Console.WriteLine("Такого человека нету в списке друзей, хотите добавить его? + или -");
                 var answer = Console.ReadLine();
                 if (answer == "+")
                 {
-                    FriendCreator(FriendArray[0]);
-                    FriendEditor(FriendArray[0], debtDouble);
+                    FriendCreate(FriendArray[0]);
+                    FriendEdit(FriendArray[0], debtDouble);
                     Console.WriteLine("Друг сохранен");
                 }
             }
         }
 
-        public static void FriendEditor(string key, double debt)
+        public static void FriendEdit(string key, double debt)
         {
             FriendsDictionary[key] = debt;
         }
 
-        public static string FriendsListEditor()
+        public static string FriendsListEdit()
         {
             var FriendsString = new StringBuilder();
 
@@ -100,7 +100,7 @@ namespace ConsoleApp7
             }
             return FriendsString.ToString();
         }
-        public static void Converter(string[] text)
+        public static void Convert(string[] text)
         {
             var row = new StringBuilder();
             foreach (string frienddebt in text)

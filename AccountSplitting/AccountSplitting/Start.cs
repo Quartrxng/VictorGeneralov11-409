@@ -25,8 +25,8 @@ namespace ConsoleApp7
                 }
                 else
                 {
-                    FileWorker.FileSeperateWriter();
-                    Menu.Separator();
+                    FileWork.FileSeperateWrite();
+                    Menu.Separate();
                     Calculator.ResultTotalDebt = 0;
                     Console.Write("Хотите оставить тот же состав участников? + или -");
                     answer = Console.ReadLine();
@@ -44,24 +44,24 @@ namespace ConsoleApp7
 
                 }
             }
-            Struct.Structurer(Calculator.ResultDebt.ToString());
-            FileWorker.FileWriter(FileWorker.FileFullName, Struct.Converter());
-            FileWorker.FilePrinter(FileWorker.FileFullName);
-            Menu.Separator();
-            Console.WriteLine(FileWorker.FileString);
+            Struct.Structuring(Calculator.ResultDebt.ToString());
+            FileWork.FileWrite(FileWork.FileFullName, Struct.Convert());
+            FileWork.FilePrint(FileWork.FileFullName);
+            Menu.Separate();
+            Console.WriteLine(FileWork.FileString);
         }
         public static void FileCreate()
         {
             Console.WriteLine("Укажите название тусовки:");
-            FileWorker.Name = Console.ReadLine();
+            FileWork.Name = Console.ReadLine();
             Console.WriteLine("               ");
             Console.WriteLine("Укажите дату:");
-            FileWorker.Date = Console.ReadLine();
-            FileWorker.FileCreator();
-            Struct.Structurer("=====Тусовка=====" + "\n" + FileWorker.Name + "\n");
-            Struct.Structurer("=====Дата=====" + "\n" + FileWorker.Date);
-            FileWorker.FileWriter(FileWorker.FileFullName, Struct.Converter());
-            Menu.Separator();
+            FileWork.Date = Console.ReadLine();
+            FileWork.FileCreate();
+            Struct.Structuring("=====Тусовка=====" + "\n" + FileWork.Name + "\n");
+            Struct.Structuring("=====Дата=====" + "\n" + FileWork.Date);
+            FileWork.FileWrite(FileWork.FileFullName, Struct.Convert());
+            Menu.Separate();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ConsoleApp7
     {
         public static StringBuilder ResultDebt = new StringBuilder();
         public static double ResultTotalDebt;
-        public static void DebtCalculator() 
+        public static void DebtCalculate() 
         {
             ResultDebt.Append("=====Бар====="+ "\n" + Party.Bar + "\n" + "\n");
             foreach (var debtFriend in Friends.FriendsDictionary)

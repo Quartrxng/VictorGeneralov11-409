@@ -12,12 +12,12 @@ namespace ConsoleApp7
         public static string StructedString;
 
         public static StringBuilder UnStructedString = new StringBuilder();
-        public static void Structurer(string text)
+        public static void Structuring(string text)
         {
             UnStructedString.AppendLine(text);
         }
 
-        public static string Converter()
+        public static string Convert()
         {
             StructedString = UnStructedString.ToString() + Separator;
             UnStructedString.Clear();

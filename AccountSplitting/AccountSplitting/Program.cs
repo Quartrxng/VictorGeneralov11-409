@@ -10,7 +10,7 @@ namespace ConsoleApp7
         public static string GlobalAnswer = "-";
         static void Main(string[] args)
         {
-            Menu.MenuCreator();
+            Menu.MenuCreate();
         }
     }
 }

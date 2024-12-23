@@ -7,7 +7,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace ConsoleApp7
 {
-    internal class FileWorker
+    internal class FileWork
     {
         public static string Date { get; set; }
         public static string Name { get; set; }
@@ -20,16 +20,10 @@ namespace ConsoleApp7
 
         public static List<string> HistoryList = new List<string>();
 
-        
-
-
-        ///public static string FileFullName = Path.Combine(ConfigManager.LoadConfig(), Name.Replace(' ', '_'), "_", Date, ".txt");
-
         public static string FileFullName
         {
             get
             {
-                // Проверяем, что Name и Date не равны null
                 return Path.Combine(
                     ConfigManager.LoadConfig(),
                     (Name ?? "default_name")+
@@ -40,29 +34,29 @@ namespace ConsoleApp7
             }
         }
 
-        public static string FileCreator ()
+        public static string FileCreate()
         {
             var file = File.Create(FileFullName);
             file.Close();
             return FileFullName;
         }
 
-        public static void FileWriter (string directory, string text)
+        public static void FileWrite(string directory, string text)
         {
             var file = new StreamWriter(directory, true);
             file.Write(text + "\n");
             file.Close();
         }
 
-        public static string[] FileReader(string FileDirectory)
+        public static string[] FileRead(string FileDirectory)
         {
             var FileData = File.ReadAllLines(FileDirectory);
             return FileData;
         }
 
-        public static void FilePrinter(string FileDirectory)
+        public static void FilePrint(string FileDirectory)
         {
-            foreach(var line in FileReader(FileDirectory))
+            foreach(var line in FileRead(FileDirectory))
             {
                 FileText.Append(line + "\n");
             }
@@ -70,11 +64,11 @@ namespace ConsoleApp7
             FileText.Clear();
         }
 
-        public static void FileSeperateWriter() 
+        public static void FileSeperateWrite() 
         {
-            FileWriter(FileFullName, "                         ");
-            FileWriter(FileFullName, "=========================");
-            FileWriter(FileFullName, "                         ");
+            FileWrite(FileFullName, "                         ");
+            FileWrite(FileFullName, "=========================");
+            FileWrite(FileFullName, "                         ");
         }
 
         public static void FileHistory()

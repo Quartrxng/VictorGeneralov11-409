@@ -18,9 +18,9 @@ namespace ConsoleApp7
             Bar = Console.ReadLine();
             Console.WriteLine("Укажите имя того, кто платил за тусовку?");
             Friends.VeryRichestFriend = Console.ReadLine();
-            Struct.Structurer("=====Бар=====" + "\n" + Bar);
-            Struct.Structurer(Struct.Separator);
-            Struct.Structurer("=====Платил=====" + "\n" + Friends.VeryRichestFriend + "\n");
+            Struct.Structuring("=====Бар=====" + "\n" + Bar);
+            Struct.Structuring(Struct.Separator);
+            Struct.Structuring("=====Платил=====" + "\n" + Friends.VeryRichestFriend + "\n");
             PartyMembers();
             Console.WriteLine("Укажите счет каждого в формате Имя = сумма. Чтобы остановить напишите -");
             while (true)
@@ -30,12 +30,12 @@ namespace ConsoleApp7
                 { 
                     break;
                 }
-                Friends.FriendsDebt(answer);
+                Friends.FriendsDebtSpecify(answer);
             }
 
-            Struct.Structurer(Friends.FriendsListEditor());
-            FileWorker.FileWriter(FileWorker.FileFullName, Struct.Converter());
-            Calculator.DebtCalculator();
+            Struct.Structuring(Friends.FriendsListEdit());
+            FileWork.FileWrite(FileWork.FileFullName, Struct.Convert());
+            Calculator.DebtCalculate();
         }
 
         public static void PartyMembers()
@@ -43,8 +43,8 @@ namespace ConsoleApp7
             if (Start.GlobalAnswer.Equals("-"))
             {
                 Console.WriteLine("Укажите список всех друзей, кто был через запятую:");
-                Struct.Structurer("=====Участники=====" + "\n");
-                Friends.FriendCreator(Console.ReadLine() + "\n");
+                Struct.Structuring("=====Участники=====" + "\n");
+                Friends.FriendCreate(Console.ReadLine() + "\n");
                 while (true)
                 {
                     Console.WriteLine(Friends.FriendsString);
@@ -53,7 +53,7 @@ namespace ConsoleApp7
                     if (answer.Equals("+"))
                     {
                         Console.WriteLine("Укажите список друзей, которых вы хотите добавить через запятую:");
-                        Friends.FriendCreator(Console.ReadLine());
+                        Friends.FriendCreate(Console.ReadLine());
                     }
                     else 
                     { 
@@ -63,7 +63,7 @@ namespace ConsoleApp7
             }
             else
             {
-                Struct.Structurer("=====Участники=====" + "\n");
+                Struct.Structuring("=====Участники=====" + "\n");
             }
         }
     }
