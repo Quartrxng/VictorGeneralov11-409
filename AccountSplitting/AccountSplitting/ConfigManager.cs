@@ -25,17 +25,22 @@ namespace ConsoleApp7
         }
         public static void Config()
         {
-            var savedHistoryDirectory = ConfigManager.LoadConfig();
+            var savedHistoryDirectory = LoadConfig();
             if (string.IsNullOrWhiteSpace(savedHistoryDirectory) || !Directory.Exists(savedHistoryDirectory))
             {
                 while (true)
                 {
-                    Console.WriteLine("\n" + "Укажите папку для сохранения файлов:" + "\n");
+                    Console.WriteLine("\n" + "Укажите папку для сохранения файлов (Чтобы использовать текущую папку напишите default):" + "\n");
                     savedHistoryDirectory = Console.ReadLine();
                     if (Directory.Exists(savedHistoryDirectory))
                     {
-                        ConfigManager.SaveConfig(savedHistoryDirectory);
+                        SaveConfig(savedHistoryDirectory);
                         Console.WriteLine("Папка сохранена в настройках" + "\n");
+                        break;
+                    }
+                    else if (savedHistoryDirectory == "default")
+                    {
+                        SaveConfig(AppDomain.CurrentDomain.BaseDirectory);
                         break;
                     }
                     else

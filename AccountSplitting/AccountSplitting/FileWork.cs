@@ -71,22 +71,29 @@ namespace ConsoleApp7
             FileWrite(FileFullName, "                         ");
         }
 
-        public static void FileHistory()
+        public static string FileHistory()
         {
-            var allFiles = Directory.GetFiles(ConfigManager.LoadConfig(), "*.txt");
-            var Files = new StringBuilder();
-            Files.AppendLine("=====История=====" + "\n");
-            var position = 0;
-            foreach (var file in allFiles)
+            if (File.Exists(ConfigManager.ConfigFile))
+            {
+                var allFiles = Directory.GetFiles(ConfigManager.LoadConfig(), "*.txt");
+                var Files = new StringBuilder();
+                Files.AppendLine("=====История=====" + "\n");
+                var position = 0;
+                foreach (var file in allFiles)
                 {
-                if (Path.GetFileName(file) != "config.txt" & !string.IsNullOrEmpty(file) & !string.IsNullOrWhiteSpace(file))
+                    if (Path.GetFileName(file) != "config.txt" & Path.GetFileName(file) != "Friends.txt" & !string.IsNullOrEmpty(file) & !string.IsNullOrWhiteSpace(file))
                     {
                         position++;
                         Files.AppendLine("Позиция: " + position.ToString() + " Название файла: " + Path.GetFileName(file) + "\n");
                         HistoryList.Add(file);
                     }
                 }
-            HistoryString = Files.ToString();
+                return Files.ToString();
+            }
+            else
+            {
+                return "Истории нету";
+            }
         }
     }
 }

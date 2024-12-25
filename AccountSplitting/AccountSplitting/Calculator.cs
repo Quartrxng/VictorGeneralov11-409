@@ -22,7 +22,7 @@ namespace ConsoleApp7
                 }
             }
             ResultDebt.Append('\n');
-            ResultDebt.Append("Итог: " + ResultTotalDebt.ToString() + "\n");
+            ResultDebt.Append("Итог: " + ResultTotalDebt.ToString() + "\n" + "\n");
         }
     }
 }

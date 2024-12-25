@@ -25,15 +25,23 @@ namespace ConsoleApp7
                         Start.Starter();
                         break;
                     case "2":
-                        FileWork.FileHistory();
-                        Console.WriteLine(FileWork.HistoryString + "\n");
-                        Console.WriteLine("Хотите открыть файл? + или -");
-                        var answer = Console.ReadLine();
-                        if (answer == "+")
+                        Console.WriteLine("                  ");
+                        Console.WriteLine(FileWork.FileHistory());
+                        if (FileWork.FileHistory() != "Истории нету")
                         {
-                            Console.Write("Укажите номер файла: ");
-                            FileWork.FilePrint(FileWork.HistoryList[int.Parse(Console.ReadLine())]);
-                            Console.WriteLine(FileWork.FileString+ "\n");
+                            Console.WriteLine("                  ");
+                            Console.WriteLine("Хотите открыть файл? + или -");
+                            var answer = Console.ReadLine();
+                            if (answer == "+")
+                            {
+                                Console.Write("Укажите номер файла: ");
+                                FileWork.FilePrint(FileWork.HistoryList[int.Parse(Console.ReadLine())-1]);
+                                Console.WriteLine(FileWork.FileString + "\n");
+                            }
+                        }
+                        else
+                        {
+                            Separate();
                         }
                         break;
                     case "3":

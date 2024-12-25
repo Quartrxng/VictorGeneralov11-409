@@ -55,23 +55,33 @@ namespace ConsoleApp7
                 }
             }
 
-            if (FileWork.FileRead(FriendFile).Contains(FriendArray[0]) && !FriendsDictionary.ContainsKey(FriendArray[0]))
+            if (FileWork.FileRead(FriendFile).Contains(FriendArray[0]) && !FriendsDictionary.ContainsKey(FriendArray[0]) && FriendsList.Contains(FriendArray[0]))
             {
                 FriendEdit(FriendArray[0], debtDouble);
             }
-            else if(FileWork.FileRead(FriendFile).Contains(FriendArray[0]) && FriendsDictionary.ContainsKey(FriendArray[0]))
+            else if (FileWork.FileRead(FriendFile).Contains(FriendArray[0]) && FriendsDictionary.ContainsKey(FriendArray[0]) && FriendsList.Contains(FriendArray[0]))
             {
-                FriendsList.Add(FriendArray[0]);
-                FriendEdit(FriendArray[0], debtDouble);
+                FriendEdit(FriendArray[0], FriendsDictionary[FriendArray[0]] +debtDouble);
             }
 
-            else if (!FileWork.FileRead(FriendFile).Contains(FriendArray[0]))
+            else if (!FileWork.FileRead(FriendFile).Contains(FriendArray[0]) && !FriendsDictionary.ContainsKey(FriendArray[0]) && !FriendsList.Contains(FriendArray[0]))
             {
                 Console.WriteLine("Такого человека нету в списке друзей, хотите добавить его? + или -");
                 var answer = Console.ReadLine();
                 if (answer == "+")
                 {
                     FriendCreate(FriendArray[0]);
+                    FriendEdit(FriendArray[0], debtDouble);
+                    Console.WriteLine("Друг сохранен");
+                }
+            }
+            else if (FileWork.FileRead(FriendFile).Contains(FriendArray[0]) && !FriendsDictionary.ContainsKey(FriendArray[0]) && !FriendsList.Contains(FriendArray[0]))
+            {
+                Console.WriteLine("Такого человека нету в списке участников, хотите добавить его? + или -");
+                var answer = Console.ReadLine();
+                if (answer == "+")
+                {
+                    FriendsList.Add(FriendArray[0]);
                     FriendEdit(FriendArray[0], debtDouble);
                     Console.WriteLine("Друг сохранен");
                 }

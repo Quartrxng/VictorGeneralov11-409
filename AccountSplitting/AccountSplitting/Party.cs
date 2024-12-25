@@ -19,7 +19,7 @@ namespace ConsoleApp7
             Console.WriteLine("Укажите имя того, кто платил за тусовку?");
             Friends.VeryRichestFriend = Console.ReadLine();
             Struct.Structuring("=====Бар=====" + "\n" + Bar);
-            Struct.Structuring(Struct.Separator);
+            Struct.Structuring("                          ");
             Struct.Structuring("=====Платил=====" + "\n" + Friends.VeryRichestFriend + "\n");
             PartyMembers();
             Console.WriteLine("Укажите счет каждого в формате Имя = сумма. Чтобы остановить напишите -");
