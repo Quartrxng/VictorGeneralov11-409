@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccountSplitting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,38 +14,45 @@ namespace ConsoleApp7
         {
             ConfigManager.Config();
             FileCreate();
-            bool flag = true;
-            while (flag)
+            while (true)
             {
                 Party.AboutParty();
                 Console.Write("Хотите внести еще один бар? + или -");
+                Friends.ConcatLists();
                 var answer = Console.ReadLine();
-                if (answer == "-")
+                if (Validation.ValidationAnswer(answer))
                 {
-                    flag = false;
-                }
-                else
-                {
-                    FileWork.FileSeperateWrite();
-                    Menu.Separate();
-                    Calculator.ResultTotalDebt = 0;
-                    Console.Write("Хотите оставить тот же состав участников? + или -");
-                    answer = Console.ReadLine();
                     if (answer == "-")
                     {
-                        Friends.FriendsList.Clear();
-                        Friends.FriendsDictionary.Clear();
-                        GlobalAnswer = "-";
+                        break;
                     }
                     else
                     {
-                        Friends.FriendsDictionary.Clear();
-                        GlobalAnswer = "+";
+                        FileWork.FileSeperateWrite();
+                        Menu.Separate();
+                        Console.Write("Хотите оставить тот же состав участников? + или -");
+                        answer = Console.ReadLine();
+                        if (answer == "-")
+                        {
+                            Friends.FriendsList.Clear();
+                            Friends.FriendsDictionary.Clear();
+                            GlobalAnswer = "-";
+                        }
+                        else
+                        {
+                            Friends.FriendsDictionary.Clear();
+                            GlobalAnswer = "+";
+                        }
                     }
-
+                }
+                else
+                {
+                    Console.WriteLine("Некорректный ввод");
                 }
             }
-            Struct.Structuring(Calculator.ResultDebt.ToString());
+            Calculator.DebtCalculate();
+            string result = Calculator.Result();
+            Struct.Structuring(result);
             FileWork.FileWrite(FileWork.FileFullName, Struct.Convert());
             FileWork.FilePrint(FileWork.FileFullName);
             Menu.Separate();
