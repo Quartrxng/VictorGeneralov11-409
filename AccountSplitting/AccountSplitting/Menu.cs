@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccountSplitting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,14 +30,25 @@ namespace ConsoleApp7
                         Console.WriteLine(FileWork.FileHistory());
                         if (FileWork.FileHistory() != "Истории нету")
                         {
-                            Console.WriteLine("                  ");
-                            Console.WriteLine("Хотите открыть файл? + или -");
-                            var answer = Console.ReadLine();
-                            if (answer == "+")
+                            while (true)
                             {
-                                Console.Write("Укажите номер файла: ");
-                                FileWork.FilePrint(FileWork.HistoryList[int.Parse(Console.ReadLine())-1]);
-                                Console.WriteLine(FileWork.FileString + "\n");
+                                Console.WriteLine("                  ");
+                                Console.WriteLine("Хотите открыть файл? + или -");
+                                var answer = Console.ReadLine();
+                                if (Validation.ValidationAnswer(answer))
+                                {
+                                    if (answer == "+")
+                                    {
+                                        Console.Write("Укажите номер файла: ");
+                                        FileWork.FilePrint(FileWork.HistoryList[int.Parse(Console.ReadLine()) - 1]);
+                                        Console.WriteLine(FileWork.FileString + "\n");
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Некорректный ввод");
+                                }
                             }
                         }
                         else

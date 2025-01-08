@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccountSplitting;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -32,10 +33,8 @@ namespace ConsoleApp7
                 }
                 Friends.FriendsDebtSpecify(answer);
             }
-
             Struct.Structuring(Friends.FriendsListEdit());
             FileWork.FileWrite(FileWork.FileFullName, Struct.Convert());
-            Calculator.DebtCalculate();
         }
 
         public static void PartyMembers()
@@ -47,17 +46,24 @@ namespace ConsoleApp7
                 Friends.FriendCreate(Console.ReadLine() + "\n");
                 while (true)
                 {
-                    Console.WriteLine(Friends.FriendsString);
                     Console.Write("Хотите добавить кого-то еще? + или -");
                     var answer = Console.ReadLine();
-                    if (answer.Equals("+"))
+                    if (Validation.ValidationAnswer(answer))
                     {
-                        Console.WriteLine("Укажите список друзей, которых вы хотите добавить через запятую:");
-                        Friends.FriendCreate(Console.ReadLine());
+                        if (answer.Equals("+"))
+                        {
+                            Console.WriteLine("Укажите список друзей, которых вы хотите добавить через запятую:");
+                            Friends.FriendCreate(Console.ReadLine());
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
-                    else 
-                    { 
-                        break; 
+                    else
+                    {
+                        Console.WriteLine("Некорректный ввод");
+                        break;
                     }
                 }
             }
