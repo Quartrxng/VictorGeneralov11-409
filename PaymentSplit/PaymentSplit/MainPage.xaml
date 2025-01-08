@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaymentSplit.MainPage"
+             Title="Расчёт">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+
+                <Label Text="Расчёт"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Row="0"
+                       BackgroundColor="White"
+                       Padding="10" />
+
+                <StackLayout Padding="5,125"
+                             Grid.Row="1"
+                             BackgroundColor="White">
+                    <Entry x:Name="PartyNameEntry"
+                           Placeholder="Введите название тусовки"
+                           Margin="0,10"
+                           HorizontalOptions="Fill"
+                           BackgroundColor="White"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="Black" />
+
+                    <Entry x:Name="DateEntry"
+                           Placeholder="Введите дату"
+                           Margin="0,10"
+                           HorizontalOptions="Fill"
+                           BackgroundColor="White"
+                           FontAttributes="Bold"
+                           FontSize="16"
+                           TextColor="Black" />
+
+                    <Button Text="Далее"
+                            FontSize="20"
+                            BackgroundColor="LightGreen"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Fill"
+                            Margin="0,60,0,0"
+                            Clicked="OnNextButtonClicked" />
+                </StackLayout>
+
+                <Grid RowDefinitions="Auto"
+                      ColumnDefinitions="*,*,*"
+                      BackgroundColor="White"
+                      Grid.Row="2"
+                      Padding="5,0">
+                    <VerticalStackLayout Grid.Column="0"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Image Source="calc_icon.png" WidthRequest="30" HeightRequest="30" />
+                        <Button Text="Расчёт"
+                               FontSize="16"
+                               HorizontalOptions="Center"
+                               TextColor="Black"
+                               BackgroundColor="LightPink"
+                               Clicked="OnCalcButtonClicked"
+                               WidthRequest="125"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Image Source="history_icon.png" WidthRequest="30" HeightRequest="30" />
+                        <Button Text="История"
+                               FontSize="16"
+                               HorizontalOptions="Center"
+                               TextColor="Black" 
+                               BackgroundColor="White"
+                               Clicked="OnHistoryButtonClicked"
+                               WidthRequest="125"/>
+                    </VerticalStackLayout>
+                    
+                    <VerticalStackLayout Grid.Column="2"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Image Source="settings_icon.png" WidthRequest="30" HeightRequest="30" />
+                        <Button Text="Настройки"
+                               FontSize="16"
+                               HorizontalOptions="Center"
+                               TextColor="Black"
+                               BackgroundColor="White"
+                               Clicked="OnSettingsButtonClicked"
+                               WidthRequest="125"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

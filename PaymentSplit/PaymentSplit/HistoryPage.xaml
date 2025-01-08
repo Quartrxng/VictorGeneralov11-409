@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaymentSplit.HistoryPage"
+             Title="HistoryPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+                <Label Text="История"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"
+                       Grid.Row="0"
+                       BackgroundColor="White"
+                       Padding="0" />
+                <VerticalStackLayout Spacing="15" Padding="20" Grid.Row="1">
+                    <Label Text="Список файлов:" />
+                    <CollectionView x:Name="FilesList" SelectionMode="Single" SelectionChanged="OnFileSelected">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding}" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <ScrollView>
+                        <Editor x:Name="FileContentEditor" IsReadOnly="True" Placeholder="Содержимое файла появится здесь" HeightRequest="200" />
+                    </ScrollView>
+                </VerticalStackLayout>
+                <Grid RowDefinitions="Auto"
+                      ColumnDefinitions="*,*,*"
+                      BackgroundColor="White"
+                      Grid.Row="2"
+                      Padding="5,0">
+                    <VerticalStackLayout Grid.Column="0"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Image Source="calc_icon.png" WidthRequest="30" HeightRequest="30" />
+                        <Button Text="Расчёт"
+                               FontSize="16"
+                               HorizontalOptions="Center"
+                               TextColor="Black"
+                               BackgroundColor="White"
+                               Clicked="OnCalcButtonClicked"
+                               WidthRequest="125"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Image Source="history_icon.png" WidthRequest="30" HeightRequest="30" />
+                        <Button Text="История"
+                               FontSize="16"
+                               HorizontalOptions="Center"
+                               TextColor="Black" 
+                               BackgroundColor="LightPink"
+                               Clicked="OnHistoryButtonClicked"
+                               WidthRequest="125"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="2"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Image Source="settings_icon.png" WidthRequest="30" HeightRequest="30" />
+                        <Button Text="Настройки"
+                               FontSize="16"
+                               HorizontalOptions="Center"
+                               TextColor="Black"
+                               BackgroundColor="White"
+                               Clicked="OnSettingsButtonClicked"
+                               WidthRequest="125"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

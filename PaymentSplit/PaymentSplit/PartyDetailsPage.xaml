@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaymentSplit.PartyDetailsPage"
+             Title="Тусовка">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+            <Label Text="Информация о баре"
+                       FontSize="Title"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start" 
+                   Margin="0,70,0,0"/>
+                <StackLayout Padding="20,120" VerticalOptions="FillAndExpand" Margin="0,10,0,0">
+                    <Entry x:Name="BarNameEntry"
+                       Placeholder="Введите название Бара"
+                       VerticalOptions="Start" />
+
+                <Entry x:Name="VeryRichestFriendEntry"
+                       Placeholder="Введите имя того, кто платил за тусовку"
+                       VerticalOptions="Start" />
+
+                <Border BackgroundColor="GhostWhite" Margin="0,20,0,10">
+                    <Grid x:Name="FriendsGrid" ColumnDefinitions="*,*" RowSpacing="10">
+                        <Label Text="Имя" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" />
+                        <Label Text="Сумма" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" />
+
+                        <Entry Placeholder="Введите имя" Grid.Row="1" Grid.Column="0" />
+                        <Entry Placeholder="Введите сумму" Keyboard="Numeric" Grid.Row="1" Grid.Column="1" />
+                    </Grid>
+                </Border>
+
+                <Button Text="Добавить строку"
+                        BackgroundColor="RoyalBlue"
+                        Clicked="OnAddRowButtonClicked"
+                        VerticalOptions="Start" 
+                        Margin="0,15,0,0"/>
+            
+                <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Center" Margin="0,40,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox x:Name="AreYouSureCheckBox" 
+                  IsChecked="False" 
+                  HeightRequest="20" 
+                  Grid.Row="0" 
+                  Grid.Column="0" />
+                    <Label Text="Вы уверены?" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" />
+                </Grid>
+
+                <Button Text="Добавить бар"
+                    BackgroundColor="LightGreen"
+                    TextColor="Black"
+                    Clicked="OnAddBarButtonClicked"
+                    VerticalOptions="Start"
+                    Margin="0,30,0,20" />
+            
+                <Button Text="Завершить"
+                        BackgroundColor="LightGreen"
+                        TextColor="Black"
+                        Clicked="OnEndButtonClicked"
+                        VerticalOptions="Start"
+                        Margin="0,10,0,20" />
+                <Label x:Name="errorText"
+                       Text=""
+                       FontSize="24"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start" />
+            </StackLayout>
+        </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaymentSplit.SettingsPage"
+             Title="SettingsPage">
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+                <Label Text="Настройки"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Row="0"
+                       BackgroundColor="White"
+                       Padding="10" />
+                <VerticalStackLayout Spacing="25" Padding="30" Grid.Row="1" Margin="0,50,0,0">
+                    <Label x:Name="FolderPathLabel" Text="Папка не выбрана" />
+                    <Button Text="Выбрать папку" Clicked="OnSelectFolderClicked" />
+                    <Editor x:Name="FileContentEditor" IsReadOnly="True" Placeholder="Содержимое файла появится здесь" HeightRequest="200" Margin="0,30,0,0"/>
+                </VerticalStackLayout>
+                <Grid RowDefinitions="Auto"
+                      ColumnDefinitions="*,*,*"
+                      BackgroundColor="White"
+                      Grid.Row="2"
+                      Padding="5,0">
+                    <VerticalStackLayout Grid.Column="0"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Image Source="calc_icon.png" WidthRequest="30" HeightRequest="30" />
+                        <Button Text="Расчёт"
+                               FontSize="16"
+                               HorizontalOptions="Center"
+                               TextColor="Black"
+                               BackgroundColor="White"
+                               Clicked="OnCalcButtonClicked"
+                               WidthRequest="125"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Image Source="history_icon.png" WidthRequest="30" HeightRequest="30" />
+                        <Button Text="История"
+                               FontSize="16"
+                               HorizontalOptions="Center"
+                               TextColor="Black" 
+                               BackgroundColor="White"
+                               Clicked="OnHistoryButtonClicked"
+                               WidthRequest="125"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="2"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Image Source="settings_icon.png" WidthRequest="30" HeightRequest="30" />
+                        <Button Text="Настройки"
+                               FontSize="16"
+                               HorizontalOptions="Center"
+                               TextColor="Black"
+                               BackgroundColor="LightPink"
+                               Clicked="OnSettingsButtonClicked"
+                               WidthRequest="125"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
