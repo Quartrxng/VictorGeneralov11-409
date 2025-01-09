@@ -137,27 +137,41 @@ public partial class PartyDetailsPage : ContentPage
             {
                 string name = ((Entry)nameEntry).Text.Trim();
                 name = name.Substring(0, 1) + name.Substring(1).ToLower();
-                double sum = double.Parse(((Entry)sumEntry).Text, CultureInfo.InvariantCulture);
-                Struct.Structuring($"{name} : {sum.ToString()}");
-                if (!FileWork.FileRead(Friends.FriendFile).Contains(name))
+                double sum;
+                if (double.TryParse(((Entry)sumEntry).Text, CultureInfo.InvariantCulture,out sum))
                 {
-                    FileWork.FileWrite(Friends.FriendFile, name);
+
                 }
-                if (!String.IsNullOrEmpty(name) && name != VeryRichestFriend)
+                else
                 {
-                    if (payers[VeryRichestFriend].ContainsKey(name))
+                    sum = 0;
+                }
+                if (!String.IsNullOrEmpty(name))
+                {
+                    Struct.Structuring($"{name} : {sum.ToString()}");
+                    if (!FileWork.FileRead(Friends.FriendFile).Contains(name))
                     {
-                        payers[VeryRichestFriend][name] = payers[VeryRichestFriend][name] + sum;
+                        FileWork.FileWrite(Friends.FriendFile, name);
                     }
-                    else
+                    if (!String.IsNullOrEmpty(name) && name != VeryRichestFriend)
                     {
-                        payers[VeryRichestFriend][name] = sum;
+                        if (sum >= 0)
+                        {
+                            if (payers[VeryRichestFriend].ContainsKey(name))
+                            {
+                                payers[VeryRichestFriend][name] = payers[VeryRichestFriend][name] + sum;
+                            }
+                            else
+                            {
+                                payers[VeryRichestFriend][name] = sum;
+                            }
+                        }
+                        else
+                        {
+                            errorText.Text = "Отрицательный счет!";
+                        }
                     }
                 }
-            }
-            else
-            {
-                errorText.Text = "Вы оставили пустые строки";
             }
         }
     }

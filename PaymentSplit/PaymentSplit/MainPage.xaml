@@ -13,6 +13,7 @@
                 </Grid.RowDefinitions>
 
                 <Label Text="Расчёт"
+                       TextColor="#1f1f1f"
                        FontSize="32"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"

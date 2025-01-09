@@ -42,9 +42,10 @@ namespace PaymentSplit
 
         public static void FileWrite(string directory, string text)
         {
-            var file = new StreamWriter(directory, true);
-            file.Write(text + "\n");
-            file.Close();
+            using (var file = new StreamWriter(directory, true))
+            {
+                file.Write(text + "\n");
+            }
         }
 
         public static string[] FileRead(string FileDirectory)

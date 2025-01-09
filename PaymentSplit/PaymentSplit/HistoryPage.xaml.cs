@@ -22,7 +22,7 @@ public partial class HistoryPage : ContentPage
 
     public async void Error()
     {
-        await DisplayAlert("Ошибка", "Истории нету :(", "Ок");
+        await DisplayAlert("Ошибка", "Истории нету", "Ок");
         await Navigation.PopModalAsync();
     }
 
